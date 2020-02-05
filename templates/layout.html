@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>{% block title %}{% endblock %}</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	        <script>
+		$(document).ready(function(){
+                	$('#file-upload').change(function() {
+                		var i = $(this).prev('label').clone();
+                		var file = $('#file-upload')[0].files[0].name;
+                		$(this).prev('label').text(file);
+                	});
+		});
+        </script>
+	</head>
+	<body class="loggedin">
+		<nav class="navtop">
+			<div>
+				<h1>Home Page of {{ username }} {{ lastname }}</h1>
+				<a href="#"><i class="fas fa-inbox"></i>{{ emailid }}</a>
+                		<a href="{{ url_for('login') }}"><i class="fas fa-home"></i>Home</a>
+				<a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i>Logout</a>
+			</div>
+		</nav>
+		<div class="content">
+			{% block content %}{% endblock %}
+		</div>
+	<form action = "/success" method = "post" enctype="multipart/form-data">  
+		<nav class="content">
+        	<div text-align:center class= "fileUpload  btn btn-primary">
+		<label for="file-upload" class="custom-file-upload">
+    		<i class="fas fa-upload"></i> Click here to select a file
+		</label>
+		<input id="file-upload" name="file-upload" type="file"/>
+       	 	<input type = "submit" class="upload" value="Upload"> </div> </nav>
+	</form>
+	</body>
+</html>

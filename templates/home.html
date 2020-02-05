@@ -1,0 +1,8 @@
+{% extends 'layout.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<h2>Details</h2>
+<p>  Number of words in your <a href="{{ url_for('download', filename=file_path) }} ">{{ file_path }} </a> is {{ num_words }}</p>
+{% endblock %}
